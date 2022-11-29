@@ -1,5 +1,5 @@
 {
-    "packageId": "default",
+    "packageId": "huggingface",
     "name": "Huggingface Prompts Package",
     "version": "0.0.1",
 	"minTextGeneratorVersion": "0.1.0",
