@@ -1,5 +1,7 @@
 {
 "prompts":[
-"getExample"
+"classify-bart-large-mnli",
+"completeText",
+"summarizeBART"
 ]
 }
