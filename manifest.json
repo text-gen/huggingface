@@ -1,7 +1,7 @@
 {
     "packageId": "huggingface",
     "name": "Huggingface Prompts Package",
-    "version": "0.0.1",
+    "version": "0.0.2",
 	"minTextGeneratorVersion": "0.1.0",
 	"description": "Huggingface Prompts comes with Text Generator plugin in Obsidian",
     "author": "Noureddine Haouari",
