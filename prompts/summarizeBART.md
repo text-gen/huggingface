@@ -5,13 +5,13 @@ PromptInfo:
  description: select considered context and run the command 
  author: Noureddine
  tags: huggingface, text, summarization
- version: 0.0.1
+ version: 0.0.3
 config:
  append:
   bodyParams: false
   reqParams: true
  context: 'inputs'
- output: 'requestResults[0]?.generated_text'
+ output: 'requestResults[0]?.summary_text'
 bodyParams:
 reqParams:
  url: "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
