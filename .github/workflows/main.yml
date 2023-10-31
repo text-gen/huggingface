@@ -1,6 +1,5 @@
 name: Release
 
-
 on:
   push:
     branches:
@@ -11,6 +10,7 @@ on:
 
 jobs:
   build:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,16 +37,16 @@ jobs:
       - name: Remove file extensions
         run: sed -i 's/\..*$//' prompts.txt
 
-      # Create data.json with the list of prompts
       - name: Create data.json
         run: |
-          sed -i 's/^/ "/' prompts.txt
-          sed -i 's/$/",/' prompts.txt
-          echo "{
-          \"prompts\": [
-          $(cat prompts.txt)
-            ]
-          }" > data.json
+          # Add double quotes around each line
+          sed -i 's/^/"/' prompts.txt
+          sed -i 's/$/"/' prompts.txt
+          
+          # Add comma at the end of each line except the last one
+          sed -i '$!s/$/,/' prompts.txt
+          # Create the JSON file
+          echo "{\"prompts\": [$(cat prompts.txt)]}" > data.json
         
       - name: Create Release
         id: create_release
@@ -76,9 +76,3 @@ jobs:
           asset_path: manifest.json
           asset_name: manifest.json
           asset_content_type: application/json
-          
-      - name: push data.json
-        run: |
-          git config user.name ${{ github.actor }}
-          git config user.email ${{ github.actor }}
-          git diff --exit-code || git commit -am "Updated data.json" && git push
